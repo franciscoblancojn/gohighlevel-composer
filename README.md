@@ -29,7 +29,7 @@ composer require franciscoblancojn/gohighlevel-composer
 
 require_once 'vendor/autoload.php';
 
-use franciscoblancojn\GohighlevelApi;
+use franciscoblancojn\GohighlevelApi\GohighlevelApi;
 
 $api = new GohighlevelApi();
 ```

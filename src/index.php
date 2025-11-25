@@ -2,7 +2,7 @@
 
 namespace franciscoblancojn\GohighlevelApi;
 
-class Gohighlevel
+class GohighlevelApi
 {
     private string $token;
     private string $locationId;
