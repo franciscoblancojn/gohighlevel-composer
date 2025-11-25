@@ -1,0 +1,11 @@
+{
+    "name": "franciscoblancojn/gohighlevel-composer",
+    "description": "Libreria para conectar con gohighlevel",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "franciscoblancojn\\AveCrmConnectShopify\\": "src/"
+        }
+    }
+}
