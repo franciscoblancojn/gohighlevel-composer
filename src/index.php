@@ -21,6 +21,7 @@ class GohighlevelApi
             $method = $props["method"];
             $url = $this->url . $props["url"];
             $body = $props["body"] ?? null;
+            $ifError = $props["ifError"] ?? null;
 
             $ch = curl_init();
 
@@ -55,6 +56,11 @@ class GohighlevelApi
 
             $json = json_decode($response, true);
 
+            // Ejecutar ifError igual que en JS
+            if ($ifError && is_callable($ifError)) {
+                $ifError($json);
+            }
+
             return [
                 "status" => "ok",
                 "message" => "Request ok",
@@ -81,7 +87,12 @@ class GohighlevelApi
             "method" => "POST",
             "body" => array_merge($data, [
                 "locationId" => $this->locationId
-            ])
+            ]),
+            "ifError" => function ($result) {
+                if (!($result["succeded"] ?? false)) {
+                    throw new \Exception("Error en contacto: " . json_encode($result));
+                }
+            }
         ]);
     }
 
