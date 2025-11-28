@@ -36,6 +36,7 @@ class GohighlevelApi
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
@@ -91,7 +92,7 @@ class GohighlevelApi
                 "locationId" => $this->locationId
             ]),
             "ifError" => function ($result) {
-                if (!($result["succeded"] ?? false)) {
+                if (!isset($result["contact"]["id"])) {
                     throw new \Exception("Error en contacto: " . json_encode($result));
                 }
             }
