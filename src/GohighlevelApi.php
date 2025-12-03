@@ -152,4 +152,21 @@ class GohighlevelApi
             }
         ]);
     }
+
+    /* ---------------------------------------------------------
+     *   BUSINESS UPDATE (PUT /businesses/{id})
+     * --------------------------------------------------------- */
+    public function onBusinessUpdate(string $id, array $data): array
+    {
+        return $this->request([
+            "url"    => "/businesses/{$id}",
+            "method" => "PUT",
+            "body"   => $data,
+            "ifError" => function ($result) {
+                if (!($result["business"]["id"] ?? null)) {
+                    throw new \Exception("Error updating business: " . json_encode($result));
+                }
+            }
+        ]);
+    }
 }
